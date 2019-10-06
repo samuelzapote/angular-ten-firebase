@@ -24,6 +24,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -120,6 +122,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "anglerplace"
 }

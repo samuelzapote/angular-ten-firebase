@@ -1,0 +1,29 @@
+<div class="container-fluid auth-container">
+  <div class="d-flex align-items-center justify-content-center" *ngIf="loading" style="margin: 0 auto;">
+    <mat-spinner class="text-primary" [diameter]="150" [strokeWidth]="10"></mat-spinner>
+  </div>
+  <form class="credentials-form" [formGroup]="credentialsForm" (ngSubmit)="onSubmit(credentialsForm)" *ngIf="!loading">
+    <mat-form-field class="w-100 mb-2" *ngIf="mode === 'register'" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Example: John Smith" type="text">
+      <mat-icon matSuffix>account_circle</mat-icon>
+      <mat-hint>Nombre Completo</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="example@company.com" type="email">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-hint>Correo Electronico</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" placeholder="Password" type="password">
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-hint>Clave</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button class="w-100 rounded-pill" type="submit" color="primary" [disabled]="!credentialsForm.valid">
+      <span *ngIf="mode === 'login'">Login</span>
+      <span *ngIf="mode === 'register'">Register</span>
+    </button>
+  </form>
+</div>
