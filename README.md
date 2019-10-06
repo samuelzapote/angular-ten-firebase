@@ -1,8 +1,8 @@
 # Angular 8 and Firebase Starter Project
 
-This is an Angular 8 starter project with a functioning custom FirebaseAuthService for handling user metedata, and protected routes using AngularFireAuthGuard with built in redirects. 
+This is an Angular 8 and Firebase starter project with a custom service for handling user metadata, and protected routes using angularfire2 guards with built in redirects. Login and Register by using the angularfire2 authentication service.
 
-NOTE: AgularFire2 guards are implemented differently here, compared to the version provided in their documentation. There is currently an issue but the workaround can be found [here](https://github.com/angular/angularfire2/issues/2099#issuecomment-503403712). Logging in and Registering through AngularFireAuth is possible using the Auth component.
+*NOTE*: AgularFire2 guards are implemented differently here, compared to the version provided in their documentation. There is currently an issue but the workaround can be found [here](https://github.com/angular/angularfire2/issues/2099#issuecomment-503403712).
 
 ---
 
