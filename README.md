@@ -1,16 +1,16 @@
 # Angular 8 and Firebase Starter Project
 
-This is an Angular 8 and Firebase starter project with a custom service for handling user metadata, and protected routes using angularfire2 guards with built in redirects. Login and Register by using the angularfire2 authentication service.
+This is an Angular 8 and Firebase starter project with a custom service for handling user metadata, and protected routes using angularfire2 guards with built in redirects. Login and Register using the AngularFire2 authentication service.
 
 *NOTE*: AgularFire2 guards are implemented differently here, compared to the version provided in their documentation. There is currently an issue but the workaround can be found [here](https://github.com/angular/angularfire2/issues/2099#issuecomment-503403712).
 
 ---
 
-Angular Material and Bootstrap have been added along with their required configurations. Visit the following docs for more information.
+Includes Angular Material and Bootstrap as well as their required configurations. Visit the following docs for more information.
 * [Angular Material](https://material.angular.io/)
 * [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
-#### Get Started
+#### Getting Started
 
 Install the [Angular CLI](https://angular.io/guide/setup-local)
 ```
@@ -22,7 +22,7 @@ Clone the project into your directory
 git clone https://github.com/samuelzapote/angular-firebase-starter.git
 ```
 
-Enter the project folder
+cd into the project folder
 ```
 cd angular-firebase-starter
 ```
@@ -34,7 +34,7 @@ npm install
 
 ---
 
-#### Set up Firebase
+#### Setting up Firebase
 
 Create a [Firebase](https://firebase.google.com) account and add a new project, once complete, [generate](https://firebase.google.com/docs/web/setup) an API Key for your web app. Keep that API Key for the following step.
 
@@ -46,7 +46,7 @@ Learn more about setting up your Firestore database [here](https://firebase.goog
 
 #### Set up the environment files
 
-Create an *environment.prod.ts* and an *environment.ts* file inside the environments directory.
+Create an *environment.prod.ts* and an *environment.ts* file inside the /src/environments directory.
 
 *environment.prod.ts*
 ```typescript
