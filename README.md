@@ -34,7 +34,7 @@ Install the required dependencies
 
 ---
 
-##### Set up Firebase
+#### Set up Firebase
 
 Create a [Firebase](https://firebase.google.com) account and add a new project, once complete, [generate](https://firebase.google.com/docs/web/setup) an API Key for your web app. Keep that API Key for the following step.
 
