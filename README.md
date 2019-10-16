@@ -90,7 +90,7 @@ ng serve
 
 Once the development server has started visit <http://localhost:4200> and you will automatically navigate to your empty path currently using the Landing component. Since this path is protected by the AngularFireAuthGuard, you will be redirected to the '/login' path. 
 
-Visit the *app-routing.module.ts* file to modify this behaviour.
+Use the *app-routing.module.ts* file to modify this behaviour.
 
 #### Learn More
 

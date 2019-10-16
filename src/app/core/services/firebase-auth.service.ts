@@ -14,7 +14,7 @@ import { User } from '@app/shared/models/user.model';
   providedIn: 'root'
 })
 export class FirebaseAuthService {
-  private user$: Observable<User>;
+  readonly user$: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -52,8 +52,9 @@ export class FirebaseAuthService {
   }
 
   async signOut(): Promise<void> {
-    await this.afAuth.auth.signOut();
-    this.router.navigate(['/login']);
+    await this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
   get user(): Observable<User> { return this.user$; }
