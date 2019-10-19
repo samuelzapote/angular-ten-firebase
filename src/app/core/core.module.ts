@@ -7,12 +7,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AuthComponent } from './components/auth/auth.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AuthComponent, LandingComponent],
+  declarations: [AuthComponent, LandingComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,6 +27,15 @@ import { LandingComponent } from './components/landing/landing.component';
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatToolbarModule
+  ],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+    LandingComponent,
+    MatSidenavModule,
+    SidebarComponent
   ]
 })
 export class CoreModule { }

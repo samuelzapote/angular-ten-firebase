@@ -14,7 +14,7 @@ import { User } from '@app/shared/models/user.model';
   providedIn: 'root'
 })
 export class FirebaseAuthService {
-  readonly user$: Observable<User>;
+  private readonly user$: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,

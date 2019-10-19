@@ -12,7 +12,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['/']);
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
