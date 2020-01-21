@@ -11,7 +11,7 @@ import { User } from '@app/shared/models/user.model';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
   public credentialsForm: FormGroup = this.fb.group({

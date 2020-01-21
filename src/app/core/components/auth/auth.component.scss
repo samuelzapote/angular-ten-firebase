@@ -1,0 +1,12 @@
+@import 'src/global-theme.scss';
+
+:host {
+  align-items: center;
+  display: flex;
+  height: $content-height;
+  justify-content: center;
+}
+
+.auth-container {
+  width: 50%;
+}
