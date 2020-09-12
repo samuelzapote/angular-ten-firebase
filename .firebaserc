@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "common-app-fb": {
+      "hosting": {
+        "base-system": [
+          "common-app-fb"
+        ]
+      }
+    }
+  }
+}

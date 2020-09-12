@@ -121,8 +121,13 @@
               "devServerTarget": "base-system:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "base-system"
 }
