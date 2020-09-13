@@ -1,0 +1,13 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .app-content {
+        flex: 1;
+    }
+
+    .app-footer, .app-header {
+        height: 6%;
+    }
+}

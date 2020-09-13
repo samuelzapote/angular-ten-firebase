@@ -1,0 +1,13 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav position="end">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-container">
+    <app-header class="app-header" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <div class="app-content">
+      <ng-content></ng-content>
+    </div>
+    <app-footer class="app-footer"></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
