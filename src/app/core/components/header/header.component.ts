@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +9,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav: EventEmitter<void> = new EventEmitter();
+  @Input() authUser: Observable<User>;
 
   constructor() { }
 

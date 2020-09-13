@@ -4,7 +4,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="app-container">
-    <app-header class="app-header" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <app-header class="app-header" [authUser]="user" (toggleSidenav)="sidenav.toggle()"></app-header>
     <div class="app-content">
       <ng-content></ng-content>
     </div>
