@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -19,6 +20,7 @@ import { AuthComponent } from './auth.component';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class AuthModule { }
