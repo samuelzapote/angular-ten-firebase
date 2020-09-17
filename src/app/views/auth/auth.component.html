@@ -1,1 +1,14 @@
-<p>auth works!</p>
+<form class="form-container" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm)">
+  <mat-form-field *ngFor="let field of formFields" appearance="outline">
+    <mat-label>{{ field.label }}</mat-label>
+    <input matInput [formControlName]="field.name" [type]="field.type" [placeholder]="field.placeholder" required>
+    <mat-icon matSuffix>{{ field.icon }}</mat-icon>
+    <mat-error *ngIf="authForm.controls[field.name].invalid">
+      {{ getErrorMessage(authForm.controls[field.name]) }}
+    </mat-error>
+  </mat-form-field>
+  <button class="submit-button" mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">
+    {{ formState | titlecase }}
+  </button>
+  <button class="alt-option-button" mat-button type="button" (click)="onToggleFormState(formState)">{{getAlternateOption(formState)}}</button>
+</form>

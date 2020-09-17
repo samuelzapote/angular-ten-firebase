@@ -1,0 +1,23 @@
+:host {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-container {
+    width: 80%;
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .alt-option-button {
+        width: 100%;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
+}
