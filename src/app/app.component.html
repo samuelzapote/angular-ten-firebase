@@ -1,3 +1,8 @@
-<app-layout>
+<app-layout *ngIf="!isLoading; else loading">
   <router-outlet></router-outlet>
 </app-layout>
+<ng-template #loading>
+  <div class="app-loading-spinner">
+    <mat-spinner diameter="200"></mat-spinner>
+  </div>
+</ng-template>
