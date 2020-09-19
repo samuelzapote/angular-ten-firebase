@@ -1,0 +1,29 @@
+$card-height: 8rem;
+$card-box-shadow: 0px 2px 4px 0px rgb(113 113 113);
+
+.home-container {
+  min-height: 100%;
+  width: 100%;
+
+  .home-hero {
+    box-shadow: $card-box-shadow;
+    height: $card-height;
+    margin: 0 0 1rem 0;
+    width: auto;
+  }
+
+  .home-row {
+    display: flex;
+    width: auto;
+
+    mat-card {
+      box-shadow: $card-box-shadow;
+      flex: 1;
+      height: $card-height;
+    }
+
+    mat-card:nth-child(2) {
+      margin: 0 1rem;
+    }
+  }
+}
