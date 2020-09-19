@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'firebase';
+
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { User } from 'firebase';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav: EventEmitter<void> = new EventEmitter();
-  @Input() authUser: Observable<User>;
+  @Input() userAuth: Observable<User>;
 
   constructor() { }
 
@@ -18,5 +19,4 @@ export class HeaderComponent implements OnInit {
   public onToggleSidenav(): void {
     this.toggleSidenav.emit();
   }
-
 }

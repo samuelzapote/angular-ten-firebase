@@ -1,8 +1,8 @@
 <mat-toolbar class="header-container" color="primary">
     <mat-toolbar-row>
-      <h1>App</h1>
+      <h1>Angular Firebase</h1>
       <span class="header-spacer"></span>
-      <button mat-icon-button *ngIf="authUser | async" (click)="onToggleSidenav()" aria-label="Account Menu Toggle">
+      <button mat-icon-button *ngIf="userAuth | async" (click)="onToggleSidenav()" aria-label="Account Menu Toggle">
         <mat-icon>account_circle</mat-icon>
       </button>
     </mat-toolbar-row>
