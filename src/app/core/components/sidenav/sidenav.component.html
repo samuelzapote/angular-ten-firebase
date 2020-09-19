@@ -1,1 +1,19 @@
-<p>sidenav works!</p>
+<div class="sidenav-container">
+  <div class="sidenav">
+    <a
+      mat-flat-button
+      class="sidenav-button"
+      *ngFor="let nav of sideNavButtons"
+      (click)="onNavigateOut()"
+      [routerLink]="['/' + nav.path]"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="sidenav-button-active">
+      <mat-icon>{{ nav.icon }}</mat-icon>
+      {{ nav.label | titlecase }}
+    </a>
+  </div>
+  <button class="logout-button" mat-raised-button (click)="onLogout()" color="warn">
+    <mat-icon>power_settings_new</mat-icon>
+    Logout
+  </button>
+</div>
