@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,6 +26,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule,
+    RouterModule,
   ],
   exports: [
     LayoutComponent,
