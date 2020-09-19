@@ -10,5 +10,8 @@
   <button class="submit-button" mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">
     {{ formState | titlecase }}
   </button>
-  <button class="alt-option-button" mat-button type="button" (click)="onToggleFormState(formState)">{{getAlternateOption(formState)}}</button>
+  <div class="alt-option">
+    <span>{{ getAlternateOption(formState)?.text }}</span>
+    <button type="button" (click)="onToggleFormState(formState)">{{ getAlternateOption(formState)?.button | titlecase }}</button>
+  </div>
 </form>

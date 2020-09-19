@@ -1,23 +1,55 @@
+@use 'src/styles/theme';
+
 :host {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .form-container {
-    width: 80%;
+  width: 80%;
 
-    mat-form-field {
-        width: 100%;
+  mat-form-field {
+    width: 100%;
+  }
+
+  .alt-option {
+    margin: .5rem 0;
+    text-align: center;
+    width: 100%;
+
+    button {
+      background-color: transparent;
+      border: none;
     }
 
-    .alt-option-button {
-        width: 100%;
+    button:hover {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
-    .submit-button {
-        width: 100%;
+    button:focus {
+      outline: none;
     }
+  }
+
+  .submit-button {
+    margin: .25rem 0;
+    width: 100%;
+  }
+}
+
+@media(min-width: theme.$breakpoint-tablet) {
+  .form-container {
+    width: 50%;
+  }
+}
+
+@media(min-width: theme.$breakpoint-desktop) {
+  .form-container {
+    width: 25%;
+  }
 }
