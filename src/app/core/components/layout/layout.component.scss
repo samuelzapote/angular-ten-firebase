@@ -13,7 +13,7 @@ mat-sidenav-container {
     background-color: theme.$white-color;
     border-radius: theme.$round-top-border-radius;
     flex: 1;
-    overflow: scroll;
+    overflow: auto;
     padding: 2.5rem 0;
   }
 
