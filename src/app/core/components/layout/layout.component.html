@@ -1,10 +1,10 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav position="end">
-    <app-sidenav></app-sidenav>
+    <app-sidenav *ngIf="userAuth | async" (logout)="onLogout()" (navigatedOut)="onNavigatedOut()"></app-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content class="app-container">
-    <app-header class="app-header" [authUser]="user" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <app-header class="app-header" [userAuth]="userAuth" (toggleSidenav)="sidenav.toggle()"></app-header>
     <div class="app-content">
       <ng-content></ng-content>
     </div>

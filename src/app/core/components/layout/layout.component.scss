@@ -1,13 +1,24 @@
+@use 'src/styles/theme';
+
+mat-sidenav-container {
+  background-color: theme.$primary-color;
+}
+
 .app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-    .app-content {
-        flex: 1;
-    }
+  .app-content {
+    background-color: theme.$white-color;
+    border-radius: theme.$round-top-border-radius;
+    flex: 1;
+    overflow: scroll;
+    padding: 2.5rem 0;
+  }
 
-    .app-footer, .app-header {
-        height: 8%;
-    }
+  .app-footer, .app-header {
+    background-color: theme.$primary-color;
+    height: 8%;
+  }
 }
