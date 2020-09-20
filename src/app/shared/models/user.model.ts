@@ -1,7 +1,10 @@
 export interface User {
   displayName?: string;
   email: string;
-  myCustomData?: string;
+  firstName?: string;
+  fullName?: string;
+  lastName?: string;
   photoURL?: string;
   uid: string;
+  username?: string;
 }
