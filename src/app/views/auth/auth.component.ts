@@ -100,7 +100,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   public async onSubmit(form: FormGroup): Promise<void> {
-    this.loadingService.toggleLoading(true);
+    this.loadingService.setLoading(true);
     const { email, password, username, firstName, lastName } = form.value;
     try {
       if (this.passwordConfirmed(form.value.password, form.value.passwordConfirm)) {
@@ -119,7 +119,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.serverError = err;
     }
     await this.router.navigate(['']);
-    this.loadingService.toggleLoading(false);
+    this.loadingService.setLoading(false);
   }
 
   public getErrorMessage(control: AbstractControl): string {

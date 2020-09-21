@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 export class LoadingService {
   private loading: boolean;
 
-  constructor() { }
-
-  public toggleLoading(loadStatus: boolean): void {
-    this.loading = !!loadStatus;
+  get isLoading(): boolean {
+    return this.loading;
   }
 
-  public isLoading(): boolean {
-    return this.loading;
+  constructor() { }
+
+  public setLoading(loadStatus: boolean): void {
+    this.loading = !!loadStatus;
   }
 }

@@ -26,11 +26,11 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void { }
 
   public async onLogout(): Promise<void> {
-    this.loadingService.toggleLoading(true);
+    this.loadingService.setLoading(true);
     await this.sidenav.close();
     await this.authService.logout();
     await this.router.navigate(['auth']);
-    this.loadingService.toggleLoading(false);
+    this.loadingService.setLoading(false);
   }
 
   public onNavigatedOut(): void {
