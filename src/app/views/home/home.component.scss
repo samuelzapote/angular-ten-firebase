@@ -1,12 +1,13 @@
+@use 'src/styles/theme';
+
 $card-height: 8rem;
-$card-box-shadow: 0px 2px 4px 0px rgb(113 113 113);
 
 .home-container {
   min-height: 100%;
   width: 100%;
 
   .home-hero {
-    box-shadow: $card-box-shadow;
+    box-shadow: theme.$light-box-shadow;
     height: $card-height;
     margin: 0 0 1rem 0;
     width: auto;
@@ -14,16 +15,32 @@ $card-box-shadow: 0px 2px 4px 0px rgb(113 113 113);
 
   .home-row {
     display: flex;
+    flex-wrap: wrap;
     width: auto;
 
     mat-card {
-      box-shadow: $card-box-shadow;
-      flex: 1;
+      box-shadow: theme.$light-box-shadow;
+      flex: 0 1 100%;
       height: $card-height;
-    }
-
-    mat-card:nth-child(2) {
-      margin: 0 1rem;
+      margin: 1rem 0;
     }
   }
 }
+
+@media(min-width: theme.$breakpoint-tablet) {
+  .home-container {
+    .home-row {
+      flex-wrap: unset;
+
+      mat-card {
+        margin-top: unset;
+      }
+
+      mat-card:nth-child(2) {
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+@media(min-width: theme.$breakpoint-desktop) { }
