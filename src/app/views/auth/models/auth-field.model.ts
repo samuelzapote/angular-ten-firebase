@@ -1,12 +1,12 @@
 import { AuthFormState } from '../types/auth-form-state.type';
-import { ValidatorFn } from '@angular/forms';
 
 export interface AuthField {
-  name: string;
+  defaultValue: null;
+  icon: string;
   label: string;
   mode: AuthFormState;
-  type: string;
+  name: string;
   placeholder: string;
-  icon: string;
-  validators: ValidatorFn[];
+  type: string;
+  validators: string[];
 }

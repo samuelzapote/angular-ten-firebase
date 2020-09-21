@@ -12,7 +12,7 @@
   </button>
   <mat-error class="server-error" *ngIf="serverError">{{ serverError }}</mat-error>
   <div class="alt-option">
-    <span>{{ getAlternateOption()?.text }}</span>
-    <button type="button" (click)="onToggleFormState(formState)">{{ getAlternateOption()?.button | titlecase }}</button>
+    <span>{{ alternateAuthOption?.text }}</span>
+    <button type="button" (click)="onToggleFormState(formState)">{{ alternateAuthOption?.button | titlecase }}</button>
   </div>
 </form>
