@@ -16,11 +16,11 @@ export class LayoutComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   public user: Observable<User>;
-  public userAuth: Observable<User>;
+  public authState: Observable<User>;
 
   constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {
     this.user = this.authService.getUser;
-    this.userAuth = this.authService.getAuthState;
+    this.authState = this.authService.getAuthState;
   }
 
   ngOnInit(): void { }

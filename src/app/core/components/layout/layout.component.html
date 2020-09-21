@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav position="end">
     <app-sidenav
-      *ngIf="userAuth | async"
+      *ngIf="authState | async"
       [user]="user"
       (logout)="onLogout()"
       (navigatedOut)="onNavigatedOut()">
@@ -9,7 +9,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="app-container">
-    <app-header class="app-header" [userAuth]="userAuth" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <app-header class="app-header" [authState]="authState" (toggleSidenav)="sidenav.toggle()"></app-header>
     <div class="app-content">
       <ng-content></ng-content>
     </div>

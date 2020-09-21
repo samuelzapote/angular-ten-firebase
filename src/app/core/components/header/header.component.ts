@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav: EventEmitter<void> = new EventEmitter();
-  @Input() userAuth: Observable<User>;
+  @Input() authState: Observable<User>;
 
   constructor() { }
 
