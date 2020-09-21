@@ -9,7 +9,7 @@ import { LoadingService } from './core/services/loading.service';
 })
 export class AppComponent {
   get isLoading(): boolean {
-    return this.loadingService.isLoading();
+    return this.loadingService.isLoading;
   }
 
   constructor(private loadingService: LoadingService) { }
