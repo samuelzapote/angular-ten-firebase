@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     private router: Router,
     private titleCasePipe: TitleCasePipe,
   ) {
-    this.formState  = 'login';
+    this.formState = 'login';
     this.formFields = this.getFormFields(AuthFormFields, this.formState);
     this.authForm = this.getAuthFormGroup(this.formFields);
     this.authFormValueSubscription = this.authForm.valueChanges.subscribe(() => {
