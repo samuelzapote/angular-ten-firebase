@@ -10,26 +10,30 @@ import { User } from 'src/app/shared/models/user.model';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  public userAuth: Observable<User> = this.authService.getUserAuth;
+  public user: Observable<User>;
+  public userAuth: Observable<User>;
 
-  constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {
+    this.user = this.authService.getUser;
+    this.userAuth = this.authService.getAuthState;
   }
 
+  ngOnInit(): void { }
+
   public async onLogout(): Promise<void> {
+    this.loadingService.toggleLoading(true);
+    await this.sidenav.close();
     await this.authService.logout();
-    this.sidenav.close();
+    await this.router.navigate(['auth']);
     this.loadingService.toggleLoading(false);
-    this.router.navigate(['auth']);
   }
 
   public onNavigatedOut(): void {
-    this.sidenav.close();
+    this.sidenav.close().catch();
   }
 }

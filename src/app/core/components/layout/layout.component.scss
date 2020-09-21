@@ -2,6 +2,10 @@
 
 mat-sidenav-container {
   background-color: theme.$primary-color;
+
+  mat-sidenav {
+    width: 100%;
+  }
 }
 
 .app-container {
@@ -20,5 +24,18 @@ mat-sidenav-container {
   .app-footer, .app-header {
     background-color: theme.$primary-color;
     height: 8%;
+  }
+}
+
+
+@media(min-width: theme.$breakpoint-tablet) {
+  mat-sidenav-container > mat-sidenav {
+    width: 50%;
+  }
+}
+
+@media(min-width: theme.$breakpoint-desktop) {
+  mat-sidenav-container > mat-sidenav {
+    width: 25%;
   }
 }

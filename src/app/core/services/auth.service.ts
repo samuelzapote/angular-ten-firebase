@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserCredential } from '@firebase/auth-types'
 
-import { LoadingService } from './loading.service';
 import { NewUser } from 'src/app/views/auth/models/new-user.model';
 import { User } from 'src/app/shared/models/user.model';
 
@@ -13,17 +12,18 @@ import { User } from 'src/app/shared/models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private userAuth$: Observable<User>;
-  private user$: Observable<User>;
+  readonly authState$: Observable<User>;
+  readonly user$: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private loadingService: LoadingService,
   ) {
-    this.userAuth$ = this.afAuth.user;
+    this.authState$ = this.afAuth.authState;
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => user ? this.afs.doc<User>(`users/${user.uid}`).valueChanges() : of(null))
+      switchMap((user: User) => {
+        return user ? this.afs.doc<User>(`users/${user.uid}`).valueChanges() : of(null);
+      })
     );
   }
 
@@ -31,8 +31,8 @@ export class AuthService {
     return this.user$;
   }
 
-  get getUserAuth(): Observable<User> {
-    return this.userAuth$;
+  get getAuthState(): Observable<User> {
+    return this.authState$;
   }
 
   public login(email: string, password: string): Promise<UserCredential> {

@@ -1,32 +1,51 @@
 @use 'src/styles/theme';
 
-.sidenav-container {
-  padding: 1rem;
-}
-
 mat-icon {
   margin: 0 .5rem 0 0;
 }
 
-.sidenav {
+.sidenav-container {
+  padding: 1rem;
+
+  .sidenav-hero {
+    align-items: center;
+    background-color: theme.$white-color;
+    border-radius: theme.$round-border-radius;
+    box-shadow: theme.$light-box-shadow;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+
+    h2, mat-icon {
+      margin: 0;
+    }
+
+    .spacer {
+      flex-grow: 1;
+    }
+  }
+
+  .sidenav {
 
 
-  .sidenav-button {
-    color: theme.$grey-color;
-    display: block;
-    margin: .5rem 0;
+    .sidenav-button {
+      color: theme.$grey-color;
+      display: block;
+      margin: .5rem 0;
+      padding: 0 .5rem;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sidenav-button-active {
+      color: theme.$primary-color;
+    }
+  }
+
+  .logout-button {
     padding: 0 .5rem;
     text-align: left;
     width: 100%;
   }
-
-  .sidenav-button-active {
-    color: theme.$primary-color;
-  }
-}
-
-.logout-button {
-  padding: 0 .5rem;
-  text-align: left;
-  width: 100%;
 }
