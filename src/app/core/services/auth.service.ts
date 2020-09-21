@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { UserCredential } from '@firebase/auth-types'
+import { UserCredential } from '@firebase/auth-types';
 
 import { NewUser } from 'src/app/views/auth/models/new-user.model';
 import { User } from 'src/app/shared/models/user.model';
@@ -36,24 +36,28 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Promise<UserCredential> {
-    this.loadingService.toggleLoading(true);
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
   public logout(): Promise<void> {
-    this.loadingService.toggleLoading(true);
     return this.afAuth.signOut();
   }
 
-  public register({email, password, username, firstName, lastName, displayName}: NewUser): Promise<void | User> {
+  public async register({displayName, email, firstName, fullName, lastName, password, username}: NewUser): Promise<User | void> {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((credentials) => {
+      .then(async (credentials) => {
+        await credentials.user.updateProfile({displayName});
         const newUser: User = {
+          displayName,
           email: credentials.user.email,
+          firstName,
+          fullName,
+          lastName,
+          photoURL: credentials.user.photoURL,
           uid: credentials.user.uid,
-          displayName: displayName,
+          username,
         };
-        this.afs.collection<User>('users').add(newUser);
+        await this.afs.doc<User>(`users/${newUser.uid}`).set(newUser);
       });
   }
 }

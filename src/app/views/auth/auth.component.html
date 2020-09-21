@@ -1,7 +1,7 @@
 <form class="form-container" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm)">
   <mat-form-field *ngFor="let field of formFields" appearance="outline">
     <mat-label>{{ field.label }}</mat-label>
-    <input matInput [formControlName]="field.name" [type]="field.type" [placeholder]="field.placeholder" required>
+    <input matInput [formControlName]="field.name" [type]="field.type" aria-label="" [placeholder]="field.placeholder" required>
     <mat-icon matSuffix>{{ field.icon }}</mat-icon>
     <mat-error *ngIf="authForm.controls[field.name].invalid">
       {{ getErrorMessage(authForm.controls[field.name]) }}
@@ -10,8 +10,9 @@
   <button class="submit-button" mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">
     {{ formState | titlecase }}
   </button>
+  <mat-error class="server-error" *ngIf="serverError">{{ serverError }}</mat-error>
   <div class="alt-option">
-    <span>{{ getAlternateOption(formState)?.text }}</span>
-    <button type="button" (click)="onToggleFormState(formState)">{{ getAlternateOption(formState)?.button | titlecase }}</button>
+    <span>{{ getAlternateOption()?.text }}</span>
+    <button type="button" (click)="onToggleFormState(formState)">{{ getAlternateOption()?.button | titlecase }}</button>
   </div>
 </form>
