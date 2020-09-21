@@ -1,6 +1,6 @@
 import {AuthField} from './models/auth-field.model';
 
-export const AuthFieldsRegistry: AuthField[] = [
+export const AuthFormFields: AuthField[] = [
   {
     name: 'firstName',
     label: 'First Name',

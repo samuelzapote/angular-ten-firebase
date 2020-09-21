@@ -6,7 +6,7 @@ import { TitleCasePipe } from '@angular/common';
 
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { AuthFieldsRegistry } from './auth-fields-registry';
+import { AuthFormFields } from './auth-form-fields';
 import { AuthField } from './models/auth-field.model';
 import { AuthFormState } from './types/auth-form-state.type';
 
@@ -36,7 +36,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     private titleCasePipe: TitleCasePipe,
   ) {
     this.formState  = 'login';
-    this.formFields = this.getFormFields(AuthFieldsRegistry, this.formState);
+    this.formFields = this.getFormFields(AuthFormFields, this.formState);
     this.authForm = this.getAuthFormGroup(this.formFields);
     this.authFormValueSubscription = this.authForm.valueChanges.subscribe(() => {
       this.handleFormChanges();
@@ -91,7 +91,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   public onToggleFormState(currentState: AuthFormState): void {
     this.formState = currentState === 'login' ? 'register' : 'login';
-    this.formFields = this.getFormFields(AuthFieldsRegistry, this.formState);
+    this.formFields = this.getFormFields(AuthFormFields, this.formState);
     this.authForm = this.getAuthFormGroup(this.formFields);
   }
 
