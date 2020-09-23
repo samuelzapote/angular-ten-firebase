@@ -1,11 +1,12 @@
 @use 'src/styles/theme';
 
-mat-icon {
-  margin: 0 .5rem 0 0;
-}
-
 .sidenav-container {
   padding: 1rem;
+
+  .exit-container {
+    text-align: right;
+    margin: 0 0 1rem 0;
+  }
 
   .sidenav-hero {
     align-items: center;
@@ -28,7 +29,6 @@ mat-icon {
 
   .sidenav {
 
-
     .sidenav-button {
       color: theme.$grey-color;
       display: block;
@@ -36,6 +36,10 @@ mat-icon {
       padding: 0 .5rem;
       text-align: left;
       width: 100%;
+
+      mat-icon {
+        margin: 0 .5rem 0 0;
+      }
     }
 
     .sidenav-button-active {

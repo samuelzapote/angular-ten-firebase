@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as datefns from 'date-fns';
 
+import { DeviceService } from '../../services/device.service';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
@@ -10,9 +11,12 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
+  @Output() exitSidenav: EventEmitter<void> = new EventEmitter();
   @Output() logout: EventEmitter<void> = new EventEmitter();
   @Output() navigatedOut: EventEmitter<void> = new EventEmitter();
   @Input() user: Observable<User>;
+
+  get onMobile(): boolean { return this.deviceService.isMobile; }
 
   readonly midDay: Date;
 
@@ -26,21 +30,25 @@ export class SidenavComponent implements OnInit {
     { label: 'account', path: 'account', icon: 'settings' },
   ];
 
-  constructor() {
+  constructor(private deviceService: DeviceService) {
     this.midDay = datefns.setHours(datefns.setSeconds(datefns.setMilliseconds(new Date(), 0), 0), 12);
   }
 
   public ngOnInit(): void { }
 
-  public onLogout(): void {
-    this.logout.emit();
+  public onExitSidenav(): void {
+    this.exitSidenav.emit();
+  }
+
+  public generateGreeting(): string {
+    return datefns.isBefore(new Date(), this.midDay) ? 'Good Morning,' : 'Good Afternoon,';
   }
 
   public onNavigateOut(): void {
     this.navigatedOut.emit();
   }
 
-  public generateGreeting(): string {
-    return datefns.isBefore(new Date(), this.midDay) ? 'Good Morning,' : 'Good Afternoon,';
+  public onLogout(): void {
+    this.logout.emit();
   }
 }

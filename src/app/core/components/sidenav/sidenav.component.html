@@ -1,4 +1,9 @@
 <div class="sidenav-container">
+  <div class="exit-container" *ngIf="onMobile">
+    <button mat-icon-button class="exit-button" (click)="onExitSidenav()" type="button">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
   <div class="sidenav-hero">
     <h2>{{ greeting }}<br>{{ (user | async)?.firstName | titlecase }}</h2>
     <span class="spacer"></span>

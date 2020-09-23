@@ -4,7 +4,8 @@
       *ngIf="authState | async"
       [user]="user"
       (logout)="onLogout()"
-      (navigatedOut)="onNavigatedOut()">
+      (navigatedOut)="onNavigatedOut()"
+      (exitSidenav)="sidenav.toggle()">
     </app-sidenav>
   </mat-sidenav>
 
