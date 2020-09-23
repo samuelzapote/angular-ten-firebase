@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TitleCasePipe } from '@angular/common';
@@ -8,7 +8,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { AuthFormFields } from './auth-form-fields';
 import { AuthField } from './models/auth-field.model';
-import { AuthFormState } from './types/auth-form-state.type';
+
+interface AuthFormState {
+  inLoginMode: boolean;
+  inRegisterMode: boolean;
+}
 
 @Component({
   selector: 'app-auth',
@@ -23,39 +27,47 @@ export class AuthComponent implements OnInit, OnDestroy {
   public formState: AuthFormState;
   public serverError: string;
 
-  get inLoginMode(): boolean { return this.formState === 'login'; }
-  get inRegisterMode(): boolean { return this.formState === 'register'; }
-  get alternateAuthOption(): {button: string, text: string} {
+  get submitButtonText(): string {
+    return this.formState.inLoginMode ? 'login' : 'register';
+  }
+
+  get alternateAuthOption(): { button: string; text: string } {
     return AuthComponent.getAlternateAuthOption(this.formState);
   }
 
   constructor(
     private authService: AuthService,
+    private formBuilder: FormBuilder,
     private loadingService: LoadingService,
     private router: Router,
     private titleCasePipe: TitleCasePipe,
   ) {
-    this.formState = 'login';
+    this.formState = { inLoginMode: true, inRegisterMode: false };
     this.formFields = this.getFormFields(AuthFormFields, this.formState);
-    this.authForm = this.getAuthFormGroup(this.formFields);
+    this.authForm = this.getAuthFormGroup(this.formFields, this.formState);
     this.authFormValueSubscription = this.authForm.valueChanges.subscribe(() => {
       this.handleFormChanges();
     });
   }
 
-  private static shouldAddControl(state: AuthFormState, fieldMode: AuthFormState): boolean {
-    if (state === 'register') {
+  private static passwordMatchValidator(g: FormGroup): { [key: string]: boolean } | null {
+    return g.get('password').value === g.get('passwordConfirm').value
+      ? null : { ['passwordMismatch']: true };
+  }
+
+  private static shouldAddControl(formState: AuthFormState, onlyForRegistration: boolean): boolean {
+    if (formState.inRegisterMode) {
       return true;
-    } else if (state === 'login' && state === fieldMode) {
+    } else if (formState.inLoginMode && !onlyForRegistration) {
       return true;
     }
     return false;
   }
 
-  private static getAlternateAuthOption(formState: AuthFormState): {button: string, text: string} {
+  private static getAlternateAuthOption(formState: AuthFormState): { button: string; text: string; } {
     return {
-      button: formState === 'login' ? `register` : 'login',
-      text: formState === 'login' ? `Don't have an account?` : 'Already have an account?',
+      button: formState.inLoginMode ? `register` : 'login',
+      text: formState.inLoginMode ? `Don't have an account?` : 'Already have an account?',
     };
   }
 
@@ -71,39 +83,34 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   private getFormFields(fieldsRegistry: AuthField[], state: AuthFormState): AuthField[] {
     return fieldsRegistry.filter((field) => {
-      return AuthComponent.shouldAddControl(state, field.mode);
+      return AuthComponent.shouldAddControl(state, field.isOnlyForRegister);
     });
   }
 
-  private getAuthFormGroup(formFields: AuthField[]): FormGroup {
-    const newFormGroup = new FormGroup({});
+  private getAuthFormGroup(formFields: AuthField[], formState: AuthFormState): FormGroup {
+    const authControlsConfig: { [control: string]: any } = {};
     formFields.forEach(field => {
-      newFormGroup.addControl(
-        field.name,
-        new FormControl(
-          field.defaultValue,
-          field.validators.map(validator => Validators[validator])
-        )
-      );
+      authControlsConfig[field.name] = [
+        field.defaultValue,
+        field.validators.map(validator => Validators[validator]),
+      ];
     });
+    const newFormGroup = this.formBuilder.group(authControlsConfig);
+    if (formState.inRegisterMode) { newFormGroup.setValidators(AuthComponent.passwordMatchValidator); }
     return newFormGroup;
   }
 
   public onToggleFormState(currentState: AuthFormState): void {
-    this.formState = currentState === 'login' ? 'register' : 'login';
+    this.formState = { inLoginMode: !currentState.inLoginMode, inRegisterMode: !currentState.inRegisterMode };
     this.formFields = this.getFormFields(AuthFormFields, this.formState);
-    this.authForm = this.getAuthFormGroup(this.formFields);
-  }
-
-  private passwordConfirmed(password: string, passwordConfirm: string): boolean {
-    return this.inRegisterMode && password === passwordConfirm;
+    this.authForm = this.getAuthFormGroup(this.formFields, this.formState);
   }
 
   public async onSubmit(form: FormGroup): Promise<void> {
     this.loadingService.setLoading(true);
     const { email, password, username, firstName, lastName } = form.value;
     try {
-      if (this.passwordConfirmed(form.value.password, form.value.passwordConfirm)) {
+      if (this.formState.inRegisterMode) {
         await this.authService.register({
           displayName: this.titleCasePipe.transform(`${firstName} ${lastName}`),
           email,
@@ -125,6 +132,11 @@ export class AuthComponent implements OnInit, OnDestroy {
   public getErrorMessage(control: AbstractControl): string {
     if (control.hasError('required')) { return 'You must enter a value'; }
     if (control.hasError('email')) { return 'You must enter a valid email'; }
+    return '';
+  }
+
+  public getFormErrorMessage(errors: ValidationErrors): string {
+    if (errors?.passwordMismatch) { return 'Passwords must match.'; }
     return '';
   }
 }

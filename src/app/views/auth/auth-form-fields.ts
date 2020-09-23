@@ -3,8 +3,8 @@ import {AuthField} from './models/auth-field.model';
 export const AuthFormFields: AuthField[] = [
   {
     name: 'firstName',
+    isOnlyForRegister: true,
     label: 'First Name',
-    mode: 'register',
     type: 'text',
     defaultValue: null,
     placeholder: 'John',
@@ -13,8 +13,8 @@ export const AuthFormFields: AuthField[] = [
   },
   {
     name: 'lastName',
+    isOnlyForRegister: true,
     label: 'Last Name',
-    mode: 'register',
     type: 'text',
     defaultValue: null,
     placeholder: 'Smith',
@@ -23,8 +23,8 @@ export const AuthFormFields: AuthField[] = [
   },
   {
     name: 'email',
+    isOnlyForRegister: false,
     label: 'Email',
-    mode: 'login',
     type: 'email',
     defaultValue: null,
     placeholder: 'johnsmith@email.com',
@@ -33,8 +33,8 @@ export const AuthFormFields: AuthField[] = [
   },
   {
     name: 'username',
+    isOnlyForRegister: true,
     label: 'Username',
-    mode: 'register',
     type: 'text',
     defaultValue: null,
     placeholder: 'johnsmith',
@@ -43,8 +43,8 @@ export const AuthFormFields: AuthField[] = [
   },
   {
     name: 'password',
+    isOnlyForRegister: false,
     label: 'Password',
-    mode: 'login',
     type: 'password',
     defaultValue: null,
     placeholder: '********',
@@ -53,8 +53,8 @@ export const AuthFormFields: AuthField[] = [
   },
   {
     name: 'passwordConfirm',
+    isOnlyForRegister: true,
     label: 'Confirm Password',
-    mode: 'register',
     type: 'password',
     defaultValue: null,
     placeholder: '********',

@@ -7,12 +7,13 @@
       {{ getErrorMessage(authForm.controls[field.name]) }}
     </mat-error>
   </mat-form-field>
-  <button class="submit-button" mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">
-    {{ formState | titlecase }}
+  <mat-error *ngIf="authForm.invalid">{{ getFormErrorMessage(authForm.errors) }}</mat-error>
+  <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="authForm.invalid">
+    {{ submitButtonText | titlecase }}
   </button>
   <mat-error class="server-error" *ngIf="serverError">{{ serverError }}</mat-error>
   <div class="alt-option">
-    <span>{{ alternateAuthOption?.text }}</span>
-    <button type="button" (click)="onToggleFormState(formState)">{{ alternateAuthOption?.button | titlecase }}</button>
+    <span>{{ alternateAuthOption.text }}</span>
+    <button type="button" (click)="onToggleFormState(formState)">{{ alternateAuthOption.button | titlecase }}</button>
   </div>
 </form>

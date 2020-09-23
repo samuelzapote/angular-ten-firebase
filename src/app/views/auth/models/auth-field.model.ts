@@ -1,10 +1,8 @@
-import { AuthFormState } from '../types/auth-form-state.type';
-
 export interface AuthField {
   defaultValue: null;
   icon: string;
+  isOnlyForRegister: boolean;
   label: string;
-  mode: AuthFormState;
   name: string;
   placeholder: string;
   type: string;
