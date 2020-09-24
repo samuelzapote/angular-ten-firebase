@@ -1,31 +1,35 @@
 <div class="sidenav-container">
-  <div class="exit-container" *ngIf="onMobile">
-    <button mat-icon-button class="exit-button" (click)="onExitSidenav()" type="button">
-      <mat-icon>clear</mat-icon>
+  <div class="sidenav-left">
+    <div class="sidenav-hero">
+      <h2>{{ greeting }}<br>{{ (user | async)?.firstName | titlecase }}</h2>
+      <span class="spacer"></span>
+      <button mat-fab class="user-avatar" color="primary">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+    <div class="sidenav">
+      <a
+        mat-flat-button
+        class="sidenav-button"
+        *ngFor="let nav of sideNavButtons"
+        (click)="onNavigateOut()"
+        [routerLink]="['/' + nav.path]"
+        routerLinkActive="sidenav-button-active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>{{ nav.icon }}</mat-icon>
+        {{ nav.label | titlecase }}
+      </a>
+    </div>
+    <button mat-raised-button class="logout-button" (click)="onLogout()" color="warn">
+      <mat-icon>power_settings_new</mat-icon>
+      Logout
     </button>
   </div>
-  <div class="sidenav-hero">
-    <h2>{{ greeting }}<br>{{ (user | async)?.firstName | titlecase }}</h2>
-    <span class="spacer"></span>
-    <button mat-fab class="user-avatar" color="primary">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+  <div class="sidenav-right">
+    <div class="exit-container" *ngIf="onMobile">
+      <button mat-icon-button class="exit-button" (click)="onExitSidenav()" type="button">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
   </div>
-  <div class="sidenav">
-    <a
-      mat-flat-button
-      class="sidenav-button"
-      *ngFor="let nav of sideNavButtons"
-      (click)="onNavigateOut()"
-      [routerLink]="['/' + nav.path]"
-      routerLinkActive="sidenav-button-active"
-      [routerLinkActiveOptions]="{ exact: true }">
-      <mat-icon>{{ nav.icon }}</mat-icon>
-      {{ nav.label | titlecase }}
-    </a>
-  </div>
-  <button mat-raised-button class="logout-button" (click)="onLogout()" color="warn">
-    <mat-icon>power_settings_new</mat-icon>
-    Logout
-  </button>
 </div>
