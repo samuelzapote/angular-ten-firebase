@@ -3,8 +3,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service';
-import { LoadingService } from '../../services/loading.service';
+import { AuthService } from '../core/services/auth.service';
+import { LoadingService } from '../core/services/loading.service';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
