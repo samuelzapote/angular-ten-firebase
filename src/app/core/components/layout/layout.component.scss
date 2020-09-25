@@ -25,9 +25,16 @@ mat-sidenav-container {
     border-radius: unset;
   }
 
+  .app-header {
+    height: theme.$header-height;
+  }
+
+  .app-footer {
+    height: theme.$footer-height;
+  }
+
   .app-footer, .app-header {
     background-color: theme.$primary-color;
-    height: 8%;
   }
 }
 
