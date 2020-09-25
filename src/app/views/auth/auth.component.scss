@@ -8,48 +8,58 @@
   width: 100%;
 }
 
-.form-container {
+.auth-container {
   width: 80%;
 
-  mat-form-field {
-    width: 100%;
+  .auth-brand-hero > h1{
+    color: theme.$primary-color;
+    font-size: 3rem;
+    font-weight: bolder;
+    line-height: 3rem;
+    margin-bottom: 1.35rem;
   }
 
-  .alt-option {
-    margin: .5rem 0;
-    text-align: center;
-    width: 100%;
-
-    button {
-      background-color: transparent;
-      border: none;
+  .form-container {
+    mat-form-field {
+      width: 100%;
     }
 
-    button:hover {
-      color: blue;
-      cursor: pointer;
-      text-decoration: underline;
+    .alt-option {
+      margin: .5rem 0;
+      text-align: center;
+      width: 100%;
+
+      button {
+        background-color: transparent;
+        border: none;
+      }
+
+      button:hover {
+        color: blue;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      button:focus {
+        outline: none;
+      }
     }
 
-    button:focus {
-      outline: none;
+    .submit-button {
+      margin: .25rem 0;
+      width: 100%;
     }
-  }
-
-  .submit-button {
-    margin: .25rem 0;
-    width: 100%;
   }
 }
 
 @media(min-width: theme.$breakpoint-tablet) {
-  .form-container {
+  .auth-container {
     width: 50%;
   }
 }
 
 @media(min-width: theme.$breakpoint-desktop) {
-  .form-container {
+  .auth-container {
     width: 25%;
   }
 }
