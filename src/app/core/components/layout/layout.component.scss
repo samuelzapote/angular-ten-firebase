@@ -21,6 +21,10 @@ mat-sidenav-container {
     padding: 2.5rem;
   }
 
+  .app-content.not-authenticated {
+    border-radius: unset;
+  }
+
   .app-footer, .app-header {
     background-color: theme.$primary-color;
     height: 8%;

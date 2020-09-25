@@ -10,10 +10,10 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="app-container">
-    <app-header class="app-header" [authState]="authState" (toggleSidenav)="sidenav.toggle()"></app-header>
-    <div class="app-content">
+    <app-header class="app-header" *ngIf="authState | async" [authState]="authState" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <div [ngClass]="{ 'not-authenticated': !(authState |async), 'app-content': true }">
       <ng-content></ng-content>
     </div>
-    <app-footer class="app-footer"></app-footer>
+    <app-footer class="app-footer" *ngIf="authState | async"></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
