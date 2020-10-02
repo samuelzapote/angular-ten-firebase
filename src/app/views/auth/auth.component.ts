@@ -90,7 +90,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   private getAuthFormGroup(formFields: AuthField[], formState: AuthFormState): FormGroup {
     const authControlsConfig: { [control: string]: any } = {};
     formFields.forEach(field => {
-      authControlsConfig[field.name] = [
+      authControlsConfig[field.controlName] = [
         field.defaultValue,
         field.validators.map(validator => Validators[validator]),
       ];
@@ -127,6 +127,10 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
     await this.router.navigate(['']);
     this.loadingService.setLoading(false);
+  }
+
+  public isControlRequired(validators: string[]): boolean {
+    return validators.includes('required');
   }
 
   public getErrorMessage(control: AbstractControl): string {

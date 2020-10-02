@@ -2,7 +2,7 @@ import {AuthField} from './models/auth-field.model';
 
 export const AuthFormFields: AuthField[] = [
   {
-    name: 'firstName',
+    controlName: 'firstName',
     isOnlyForRegister: true,
     label: 'First Name',
     type: 'text',
@@ -12,7 +12,7 @@ export const AuthFormFields: AuthField[] = [
     validators: ['required'],
   },
   {
-    name: 'lastName',
+    controlName: 'lastName',
     isOnlyForRegister: true,
     label: 'Last Name',
     type: 'text',
@@ -22,7 +22,7 @@ export const AuthFormFields: AuthField[] = [
     validators: ['required'],
   },
   {
-    name: 'email',
+    controlName: 'email',
     isOnlyForRegister: false,
     label: 'Email',
     type: 'email',
@@ -32,7 +32,7 @@ export const AuthFormFields: AuthField[] = [
     validators: ['required', 'email'],
   },
   {
-    name: 'username',
+    controlName: 'username',
     isOnlyForRegister: true,
     label: 'Username',
     type: 'text',
@@ -42,7 +42,7 @@ export const AuthFormFields: AuthField[] = [
     validators: ['required'],
   },
   {
-    name: 'password',
+    controlName: 'password',
     isOnlyForRegister: false,
     label: 'Password',
     type: 'password',
@@ -52,7 +52,7 @@ export const AuthFormFields: AuthField[] = [
     validators: ['required'],
   },
   {
-    name: 'passwordConfirm',
+    controlName: 'passwordConfirm',
     isOnlyForRegister: true,
     label: 'Confirm Password',
     type: 'password',
