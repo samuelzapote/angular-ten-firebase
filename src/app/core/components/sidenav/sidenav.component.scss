@@ -1,64 +1,61 @@
 @use 'src/styles/theme';
 
 .sidenav-container {
-  display: flex;
   padding: 1rem;
+  text-align: right;
 
-  .sidenav-left {
-    flex-grow: 1;
-    margin-right: 1rem;
+  .exit-container {
+    text-align: right;
+    margin: 0;
+  }
 
-    .sidenav-hero {
-      align-items: center;
-      background-color: theme.$white-color;
-      border-radius: theme.$round-border-radius;
-      box-shadow: theme.$light-box-shadow;
-      display: flex;
-      justify-content: flex-start;
-      margin: 0 0 1rem 0;
-      padding: 1rem;
+  .sidenav-hero {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+    padding: .5rem;
 
-      h2, mat-icon {
-        margin: 0;
-      }
-
-      .spacer {
-        flex-grow: 1;
-      }
+    h2, mat-icon {
+      margin: 0;
     }
 
-    .sidenav {
-
-      .sidenav-button {
-        color: theme.$grey-color;
-        display: block;
-        margin: .5rem 0;
-        padding: 0 .5rem;
-        text-align: left;
-        width: 100%;
-
-        mat-icon {
-          margin: 0 .5rem 0 0;
-        }
-      }
-
-      .sidenav-button-active {
-        color: theme.$primary-color;
-      }
-    }
-
-    .logout-button {
-      padding: 0 .5rem;
-      text-align: left;
-      width: 100%;
+    .user-avatar {
+      margin: 0 0 0 1rem;
     }
   }
 
-  .sidenav-right {
+  .sidenav {
+    margin: 0 0 0 auto;
+    width: 50%;
 
-    .exit-container {
+    .sidenav-button {
+      border-radius: 2rem;
+      color: theme.$grey-color;
+      display: block;
+      margin: .5rem 0;
+      padding: 0 .5rem;
       text-align: right;
-      margin: 0 0 1rem 0;
+      width: 100%;
+
+      mat-icon {
+        margin: 0 0 0 .5rem;
+      }
+    }
+
+    .sidenav-button-active {
+      color: theme.$primary-color;
+    }
+  }
+
+  .logout-button {
+    border-radius: 2rem;
+    padding: 0 .5rem;
+    text-align: right;
+    width: 50%;
+
+    mat-icon {
+      margin: 0 0 0 .5rem;
     }
   }
 }
