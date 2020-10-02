@@ -1,4 +1,15 @@
-import {AuthField} from './models/auth-field.model';
+export type AuthFormState = 'login' | 'register';
+
+export interface AuthField {
+  controlName: string;
+  defaultValue: unknown;
+  icon: string;
+  isOnlyForRegister: boolean;
+  label: string;
+  placeholder: string;
+  type: string;
+  validators: string[];
+}
 
 export const AuthFormFields: AuthField[] = [
   {
@@ -25,7 +36,7 @@ export const AuthFormFields: AuthField[] = [
     controlName: 'email',
     isOnlyForRegister: false,
     label: 'Email',
-    type: 'email',
+    type: 'text',
     defaultValue: null,
     placeholder: 'johnsmith@email.com',
     icon: 'email',

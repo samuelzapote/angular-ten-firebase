@@ -6,8 +6,8 @@ import { TitleCasePipe } from '@angular/common';
 
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { AuthFormFields } from './auth-form-fields';
-import { AuthField } from './models/auth-field.model';
+import { AuthField, AuthFormFields } from './auth.config';
+import { UserRegistration } from 'src/app/shared/models/user.model';
 
 interface AuthFormState {
   inLoginMode: boolean;
@@ -111,15 +111,16 @@ export class AuthComponent implements OnInit, OnDestroy {
     const { email, password, username, firstName, lastName } = form.value;
     try {
       if (this.formState.inRegisterMode) {
-        await this.authService.register({
-          displayName: this.titleCasePipe.transform(`${firstName} ${lastName}`),
+        const newUser: UserRegistration = {
+          displayName: username,
           email,
           firstName: this.titleCasePipe.transform(firstName),
-          fullName: this.titleCasePipe.transform(`${firstName} ${lastName}`),
+          fullName: this.titleCasePipe.transform(firstName + (lastName ? ` ${lastName}` : ``)),
           lastName: this.titleCasePipe.transform(lastName),
           password,
-          username,
-        });
+          uid: null,
+        };
+        await this.authService.register(newUser);
       }
       await this.authService.login(form.value.email, form.value.password);
     } catch (err) {

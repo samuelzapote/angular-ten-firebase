@@ -6,5 +6,8 @@ export interface User {
   lastName?: string;
   photoURL?: string;
   uid: string;
-  username?: string;
+}
+
+export interface UserRegistration extends User {
+  password: string;
 }
