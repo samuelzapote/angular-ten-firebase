@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as datefns from 'date-fns';
 
 import { DeviceService } from '../../services/device.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -18,30 +17,18 @@ export class SidenavComponent implements OnInit {
 
   get onMobile(): boolean { return this.deviceService.isMobile; }
 
-  readonly midDay: Date;
-
-  get greeting(): string {
-    return this.generateGreeting();
-  }
-
   public sideNavButtons = [
     { label: 'home', path: '', icon: 'home' },
     { label: 'profile', path: 'profile', icon: 'account_circle' },
     { label: 'account', path: 'account', icon: 'settings' },
   ];
 
-  constructor(private deviceService: DeviceService) {
-    this.midDay = datefns.setHours(datefns.setSeconds(datefns.setMilliseconds(new Date(), 0), 0), 12);
-  }
+  constructor(private deviceService: DeviceService) { }
 
   public ngOnInit(): void { }
 
   public onExitSidenav(): void {
     this.exitSidenav.emit();
-  }
-
-  public generateGreeting(): string {
-    return datefns.isBefore(new Date(), this.midDay) ? 'Good Morning,' : 'Good Afternoon,';
   }
 
   public onNavigateOut(): void {
